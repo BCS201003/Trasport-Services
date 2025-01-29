@@ -52,8 +52,7 @@ class MyApp extends StatelessWidget {
       // home: Dashboard(),
       // home: LoginDriverScreen(),
       // home: EnrollScreen(),
-      // home: LoadingScreen(),
-         home: UploadDocumentPage(),
+       home: LoadingScreen(),
     );
   }
 }

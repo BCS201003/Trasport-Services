@@ -1,0 +1,49 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "my-transpostbus-project",
+          "appId": "1:438279078908:android:ef4bff71200a9ac5752879",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "my-transpostbus-project",
+          "configurations": {
+            "android": "1:438279078908:android:ef4bff71200a9ac5752879",
+            "ios": "1:438279078908:ios:a395307b7d5ef826752879",
+            "macos": "1:438279078908:ios:a395307b7d5ef826752879",
+            "web": "1:438279078908:web:16de835fda11b515752879",
+            "windows": "1:438279078908:web:85ae7dde45a004a5752879"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

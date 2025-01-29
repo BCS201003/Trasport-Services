@@ -7,7 +7,7 @@ import 'package:untitled/Notification/notification_controller.dart';
 import 'package:untitled/BusDashboard/busdashboard.dart';
 import 'package:untitled/Learning/advertiz.dart';
 import 'package:untitled/Seats/view/seats.dart';
-import 'package:untitled/Settings/settings.dart';
+import 'package:untitled/Settings/views/settings.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
 import 'package:untitled/Widgets/Other_widget/logout.dart';

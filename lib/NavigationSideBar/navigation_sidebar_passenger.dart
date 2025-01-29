@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/ProfileScreen/Views/screens/create_profile/createprofilescreen.dart';
 import 'package:untitled/Seats/view/seats.dart';
-import 'package:untitled/Settings/settings.dart';
+import 'package:untitled/Settings/views/settings.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
 import 'package:untitled/Widgets/Other_widget/logout.dart';

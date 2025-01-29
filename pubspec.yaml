@@ -39,6 +39,8 @@ dependencies:
   firebase_data_connect: ^0.1.2+7
   cloud_firestore: ^5.6.1
   connectivity_plus: ^6.1.2
+  lottie: ^3.2.0
+
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ flutter:
     - assets/background.png
     - assets/certificate.png
     - assets/BusSample2.png
+    - assets/lottie/success.json
   fonts:
     - family: Jost
       fonts:

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Learning/Widget/orc_widget/contactview.dart';
-import 'package:untitled/Learning/Widget/orc_widget/customtab.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/contactview.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/customtab.dart';
 
 class ORC extends StatefulWidget {
   const ORC({super.key});

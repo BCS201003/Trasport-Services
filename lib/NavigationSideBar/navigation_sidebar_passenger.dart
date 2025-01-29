@@ -1,4 +1,5 @@
-import 'package:untitled/Learning/advertiz.dart';
+import 'package:untitled/Dashboard/dashboard.dart';
+import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -155,14 +156,14 @@ class SideBarNavigationPassengerState extends State<SideBarNavigationPassenger>
                                       height: 50.0,
                                     ),
                                     MyButton(
-                                      text: "Seating",
+                                      text: "Buses",
                                       iconData: Icons.payment,
                                       onPressed: () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const BusSeatingScreen()),
+                                                  const Dashboard()),
                                         );
                                       },
                                       textSize: 16.0,

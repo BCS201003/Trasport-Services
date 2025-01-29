@@ -1,3 +1,4 @@
+// lib/widgets/custom_dropdown_tile.dart
 import 'package:flutter/material.dart';
 
 class CustomDropdownTile extends StatelessWidget {
@@ -20,7 +21,6 @@ class CustomDropdownTile extends StatelessWidget {
       title: Text(title),
       trailing: DropdownButton<String>(
         value: currentValue,
-        // Convert your items list into DropdownMenuItem widgets
         items: items.map((item) {
           return DropdownMenuItem<String>(
             value: item,
@@ -28,7 +28,7 @@ class CustomDropdownTile extends StatelessWidget {
           );
         }).toList(),
         onChanged: onChanged,
-        underline: const SizedBox(), // Remove default underline
+        underline: const SizedBox(),
       ),
     );
   }

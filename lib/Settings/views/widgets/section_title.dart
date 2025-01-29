@@ -1,3 +1,4 @@
+// lib/widgets/section_title.dart
 import 'package:flutter/material.dart';
 
 class SectionTitle extends StatelessWidget {
@@ -7,8 +8,8 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Some versions of Flutter removed 'subtitle1'; use 'titleMedium' or
-    // whichever text style you prefer for your headings.
+    // If Material 3 is enabled and old style properties are removed,
+    // you can use `titleMedium`, `titleLarge`, etc.
     return Padding(
       padding: const EdgeInsets.fromLTRB(107, 16, 0, 8),
       child: Text(

@@ -5,7 +5,7 @@ import 'package:untitled/BusDashboard/Containers/select_class_container.dart';
 import 'package:untitled/BusDashboard/Containers/student_list_container.dart';
 import 'package:untitled/BusDashboard/Containers/summary_container.dart';
 import 'package:untitled/BusDashboard/Containers/teacher_list_container.dart';
-import 'package:untitled/Learning/advertiz.dart';
+import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class BusDashboard extends StatelessWidget {

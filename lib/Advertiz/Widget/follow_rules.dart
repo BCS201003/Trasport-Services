@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Learning/Widget/RulesAndConditions/term_and_conditions.dart';
-import 'package:untitled/Learning/Widget/RulesAndConditions/rules_and_regulations.dart';
+import 'package:untitled/Advertiz/Widget/RulesAndConditions/term_and_conditions.dart';
+import 'package:untitled/Advertiz/Widget/RulesAndConditions/rules_and_regulations.dart';
 
 class FollowRules extends StatelessWidget {
 

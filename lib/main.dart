@@ -6,6 +6,7 @@ import 'package:untitled/HomeScreen/Controller/home_controller.dart';
 import 'package:untitled/Mybuses/Controller/mybus_controller.dart';
 import 'package:untitled/Mybuses/my_buses.dart';
 import 'package:untitled/Notification/notification_controller.dart';
+import 'package:untitled/Payment/Widgets/payment_sucessfull.dart';
 import 'package:untitled/ProfileScreen/Controller/profile_controller.dart';
 import 'package:untitled/Seats/controller/seatcontroller.dart';
 import 'package:untitled/Seats/view/seats.dart';
@@ -43,15 +44,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-       home: MyBusesScreen(),
-      // home: SideBarNavigationAdmin(),
+      // home: MyBusesScreen(),
+      // home: SideBarNavigationPassenger(),
       // home: FeedbackScreen(),
       // home: BusSeatingScreen(),
       // home: Dashboard(),
       // home: LoginDriverScreen(),
       // home: EnrollScreen(),
       // home: LoadingScreen(),
-      // home: LoadingScreen(),
+         home: PaymentSuccessScreen(),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Learning/Widget/orc_widget/contactview_widget/PointWidget2/verify_certificate.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/contactview_widget/PointWidget2/verify_certificate.dart';
 
 class Case3Widget extends StatelessWidget {
   const Case3Widget({super.key});

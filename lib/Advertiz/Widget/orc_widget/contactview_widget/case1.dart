@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Learning/Widget/orc_widget/contactview_widget/PointWidget1/client_message.dart';
-import 'package:untitled/Learning/Widget/orc_widget/contactview_widget/PointWidget1/rating/rating.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/contactview_widget/PointWidget1/client_message.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/contactview_widget/PointWidget1/rating/rating.dart';
 
 class Case1Widget extends StatelessWidget {
   const Case1Widget({super.key});

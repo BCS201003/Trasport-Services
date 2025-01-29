@@ -1,36 +1,35 @@
+// lib/settings_screen.dart
 import 'package:flutter/material.dart';
-import 'package:untitled/Settings/views/widgets/custom_dropdown_tile.dart';
-import 'package:untitled/Settings/views/widgets/custom_switch_tile.dart';
-import 'package:untitled/Settings/views/widgets/section_title.dart';
-import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
-
+import 'package:untitled/Settings/views/data_and_privacy/about_screen.dart';
+import 'package:untitled/Settings/views/data_and_privacy/change_password_screen.dart';
+import 'package:untitled/Settings/views/data_and_privacy/help_and_support_screen.dart';
+import 'package:untitled/Settings/views/data_and_privacy/report_an_issue_screen.dart';
+import 'package:untitled/Settings/views/data_and_privacy/ride_history_screen.dart';
+import 'package:untitled/Settings/views/data_and_privacy/two_factor_authentication_screen.dart';
+import 'widgets/custom_switch_tile.dart';
+import 'widgets/custom_dropdown_tile.dart';
+import 'widgets/section_title.dart';
+import 'package:untitled/Settings/controllers/settings_controller.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  // Example states for toggles and selections
-  bool isDarkTheme = false;
-  bool notificationsEnabled = true;
-  bool locationEnabled = true;
-  bool biometricEnabled = false;
-
-  String selectedLanguage = 'English';
-  String selectedCurrency = 'USD';
-  String preferredPayment = 'Credit Card';
-  String preferredVehicle = 'Economy';
+  final SettingsController _controller = SettingsController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Settings'),
+      appBar: AppBar(
+        title: const Text('Settings'),
+        centerTitle: true,
+      ),
       body: ListView(
         children: [
-          // ESSENTIAL SETTINGS
           const SectionTitle(title: 'ESSENTIAL SETTINGS'),
           Card(
             margin: const EdgeInsets.all(8),
@@ -39,38 +38,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 CustomSwitchTile(
                   title: 'Dark Theme',
                   subtitle: 'Toggle between Light and Dark theme',
-                  value: isDarkTheme,
+                  value: _controller.isDarkTheme,
                   onChanged: (value) {
-                    setState(() => isDarkTheme = value);
-                    // TODO: Add your theme logic (e.g. Provider, Bloc, or setState)
+                    setState(() => _controller.setDarkTheme(value));
                   },
-                  activeColor: Colors.blue,
-                  activeTrackColor: Colors.white,
+                  activeColor: Colors.blue,        // Thumb color when ON
+                  activeTrackColor: Colors.blue[200], // Track color when ON
                 ),
                 CustomSwitchTile(
                   title: 'Notifications',
                   subtitle: 'Enable or disable push notifications',
-                  value: notificationsEnabled,
+                  value: _controller.notificationsEnabled,
                   onChanged: (value) {
-                    setState(() => notificationsEnabled = value);
-                    // TODO: Notification permission logic
+                    setState(() => _controller.setNotificationsEnabled(value));
                   },
-                  activeColor: Colors.blue,
-                  activeTrackColor: Colors.white,
+                  activeColor: Colors.blue,        // Thumb color when ON
+                  activeTrackColor: Colors.blue[200], // Track color when ON
                 ),
                 ListTile(
                   title: const Text('About'),
-                  subtitle: const Text('App version, developer info, privacy policy, etc.'),
+                  subtitle: const Text('App version, developer info, etc.'),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // TODO: Navigate to About page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const AboutScreen()),
+                    );
                   },
                 ),
               ],
             ),
           ),
-
-          // USER PREFERENCES
           const SectionTitle(title: 'USER PREFERENCES'),
           Card(
             margin: const EdgeInsets.all(8),
@@ -78,61 +76,59 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 CustomDropdownTile(
                   title: 'Language',
-                  currentValue: selectedLanguage,
+                  currentValue: _controller.language,
                   items: const ['English', 'Spanish', 'French', 'German'],
                   onChanged: (value) {
-                    setState(() => selectedLanguage = value!);
-                    // TODO: Implement i18n or localization here
+                    setState(() => _controller.setLanguage(value!));
                   },
                 ),
                 CustomDropdownTile(
                   title: 'Currency',
-                  currentValue: selectedCurrency,
+                  currentValue: _controller.currency,
                   items: const ['USD', 'EUR', 'GBP', 'JPY'],
                   onChanged: (value) {
-                    setState(() => selectedCurrency = value!);
+                    setState(() => _controller.setCurrency(value!));
                   },
                 ),
                 CustomSwitchTile(
                   title: 'Location Services',
                   subtitle: 'Enable or disable GPS tracking',
-                  value: locationEnabled,
+                  value: _controller.locationEnabled,
                   onChanged: (value) {
-                    setState(() => locationEnabled = value);
-                    // TODO: Request or revoke location permissions
+                    setState(() => _controller.setLocationEnabled(value));
                   },
-                  activeColor: Colors.blue,
-                  activeTrackColor: Colors.white,
+                  activeColor: Colors.blue,        // Thumb color when ON
+                  activeTrackColor: Colors.blue[200], // Track color when ON
                 ),
                 CustomDropdownTile(
                   title: 'Default Payment',
-                  currentValue: preferredPayment,
+                  currentValue: _controller.preferredPaymentMethod,
                   items: const ['Credit Card', 'Wallet', 'Cash'],
                   onChanged: (value) {
-                    setState(() => preferredPayment = value!);
+                    setState(() => _controller.setPreferredPaymentMethod(value!));
                   },
                 ),
                 CustomDropdownTile(
                   title: 'Preferred Vehicle',
-                  currentValue: preferredVehicle,
+                  currentValue: _controller.preferredVehicleType,
                   items: const ['Economy', 'Premium', 'Shared'],
                   onChanged: (value) {
-                    setState(() => preferredVehicle = value!);
+                    setState(() => _controller.setPreferredVehicleType(value!));
                   },
                 ),
                 ListTile(
                   title: const Text('Ride/Service History'),
-                  subtitle: const Text('View or manage your past trips & bookings'),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // TODO: Navigate to history screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const RideHistoryScreen()),
+                    );
                   },
                 ),
               ],
             ),
           ),
-
-          // SECURITY & PRIVACY
           const SectionTitle(title: 'SECURITY & PRIVACY'),
           Card(
             margin: const EdgeInsets.all(8),
@@ -141,43 +137,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 CustomSwitchTile(
                   title: 'Biometric Authentication',
                   subtitle: 'Enable Face ID or Fingerprint',
-                  value: biometricEnabled,
+                  value: _controller.biometricEnabled,
                   onChanged: (value) {
-                    setState(() => biometricEnabled = value);
-                    // TODO: Integrate local_auth or relevant library
+                    setState(() => _controller.setBiometricEnabled(value));
                   },
                   activeColor: Colors.blue,
-                  activeTrackColor: Colors.white,
+                  activeTrackColor: Colors.blue[200],
                 ),
                 ListTile(
                   title: const Text('Change Password'),
-                  subtitle: const Text('Update your login credentials'),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // TODO: Navigate to password change screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ChangePasswordScreen()),
+                    );
                   },
                 ),
                 ListTile(
                   title: const Text('Two-Factor Authentication (2FA)'),
-                  subtitle: const Text('Enhance account security'),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // TODO: 2FA setup
-                  },
-                ),
-                ListTile(
-                  title: const Text('Data & Privacy Settings'),
-                  subtitle: const Text('Manage permissions and data collection'),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    // TODO: Navigate to data & privacy
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const TwoFactorAuthScreen()),
+                    );
                   },
                 ),
               ],
             ),
           ),
-
-          // SUPPORT & ASSISTANCE
           const SectionTitle(title: 'SUPPORT & ASSISTANCE'),
           Card(
             margin: const EdgeInsets.all(8),
@@ -185,18 +174,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 ListTile(
                   title: const Text('Help & Support'),
-                  subtitle: const Text('FAQs, contact support, troubleshooting'),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // TODO: Help & Support
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const HelpAndSupportScreen()),
+                    );
                   },
                 ),
                 ListTile(
                   title: const Text('Report an Issue'),
-                  subtitle: const Text('Report bugs or service problems'),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // TODO: Issue reporting
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ReportIssueScreen()),
+                    );
                   },
                 ),
               ],

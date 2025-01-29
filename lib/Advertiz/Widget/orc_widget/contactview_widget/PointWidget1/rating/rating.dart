@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Learning/Widget/orc_widget/contactview_widget/PointWidget1/rating/ratingbox.dart';
-import 'package:untitled/Learning/Widget/orc_widget/contactview_widget/PointWidget1/rating/ratingdistribution.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/contactview_widget/PointWidget1/rating/ratingbox.dart';
+import 'package:untitled/Advertiz/Widget/orc_widget/contactview_widget/PointWidget1/rating/ratingdistribution.dart';
 
 class RatingWidget extends StatelessWidget {
   const RatingWidget({super.key});

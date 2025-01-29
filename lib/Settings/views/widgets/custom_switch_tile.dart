@@ -1,3 +1,4 @@
+// lib/widgets/custom_switch_tile.dart
 import 'package:flutter/material.dart';
 
 class CustomSwitchTile extends StatelessWidget {
@@ -6,7 +7,6 @@ class CustomSwitchTile extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
 
-  // Optional: Provide custom colors to override defaults
   final Color? activeColor;
   final Color? activeTrackColor;
 
@@ -27,12 +27,13 @@ class CustomSwitchTile extends StatelessWidget {
       subtitle: Text(subtitle),
       value: value,
       onChanged: onChanged,
-      activeColor: activeColor,
-      activeTrackColor: activeTrackColor,
-      // You can also use 'secondary:' to show an icon or avatar
+      activeColor: activeColor ?? Theme.of(context).colorScheme.primary,
+      activeTrackColor: activeTrackColor ?? Theme.of(context).colorScheme.primary.withOpacity(0.5),
       secondary: Icon(
         value ? Icons.toggle_on : Icons.toggle_off,
-        color: activeColor ?? Theme.of(context).colorScheme.primary,
+        color: value
+            ? (activeColor ?? Theme.of(context).colorScheme.primary)
+            : Colors.grey,
         size: 32,
       ),
     );

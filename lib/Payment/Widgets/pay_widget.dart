@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/BusDashboard/busdashboard.dart';
+import 'package:untitled/Payment/Widgets/payment_sucessfull.dart';
 
 class PayWidget extends StatefulWidget {
   const PayWidget({super.key});
@@ -100,7 +101,7 @@ class PayWidgetState extends State<PayWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const BusDashboard(),
+                  builder: (context) => const PaymentSuccessScreen(),
                 ),
               );
             },

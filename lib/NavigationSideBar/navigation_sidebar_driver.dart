@@ -7,6 +7,7 @@ import 'package:untitled/Notification/notification_controller.dart';
 import 'package:untitled/BusDashboard/busdashboard.dart';
 import 'package:untitled/Learning/advertiz.dart';
 import 'package:untitled/Seats/view/seats.dart';
+import 'package:untitled/Settings/settings.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
 import 'package:untitled/Widgets/Other_widget/logout.dart';
@@ -230,7 +231,12 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                       text: "Settings",
                                       iconData: Icons.settings,
                                       onPressed: () {
-                                        // Add your code here
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const SettingsScreen()),
+                                        );
                                       },
                                       textSize: 16.0,
                                       height: 50.0,

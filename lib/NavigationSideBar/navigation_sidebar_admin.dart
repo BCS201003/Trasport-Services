@@ -3,6 +3,7 @@ import 'package:untitled/Mybuses/my_buses.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Settings/settings.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
 import 'package:untitled/Widgets/Other_widget/logout.dart';
@@ -176,7 +177,14 @@ class SideBarNavigationAdminState extends State<SideBarNavigationAdmin>
                                     MyButton(
                                       text: "Settings",
                                       iconData: Icons.settings,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const SettingsScreen()),
+                                        );
+                                      },
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),

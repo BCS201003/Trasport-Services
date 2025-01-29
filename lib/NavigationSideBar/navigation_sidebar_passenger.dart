@@ -1,5 +1,6 @@
 import 'package:untitled/Dashboard/dashboard.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
+import 'package:untitled/File/file.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -232,6 +233,22 @@ class SideBarNavigationPassengerState extends State<SideBarNavigationPassenger>
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),
+                                MyButton(
+                                  text: "Upload File",
+                                  iconData: Icons.lock,
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const UploadDocumentPage()),
+                                    );
+                                  },
+                                  textSize: 16.0,
+                                  height: 50.0,
+                                ),
+
+
                                     MyButton(
                                       text: "Logout",
                                       iconData: Icons.lock,

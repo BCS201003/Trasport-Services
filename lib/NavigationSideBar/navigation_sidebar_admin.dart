@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:untitled/BusDashboard/busdashboard.dart';
+import 'package:untitled/File/file.dart';
 import 'package:untitled/Mybuses/my_buses.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:get/get.dart';
@@ -189,9 +192,16 @@ class SideBarNavigationAdminState extends State<SideBarNavigationAdmin>
                                       height: 50.0,
                                     ),
                                     MyButton(
-                                      text: "File",
+                                      text: "Upload File",
                                       iconData: Icons.attach_file,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const UploadDocumentPage()),
+                                        );
+                                      },
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),

@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:get/get.dart';
 import 'package:untitled/Feedback/Feedback.dart';
+import 'package:untitled/File/file.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:untitled/BusDashboard/busdashboard.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
@@ -52,7 +53,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
   @override
   Widget build(BuildContext context) {
     final NotificationController notificationController =
-    Get.put(NotificationController());
+        Get.put(NotificationController());
 
     Size mediaQuery = MediaQuery.of(context).size;
     double sidebarSize = mediaQuery.width * 0.45;
@@ -78,7 +79,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                 children: [
                   TileLayer(
                     urlTemplate:
-                    "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=9amPXYzYEX44i7Emfblv",
+                        "https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=9amPXYzYEX44i7Emfblv",
                     userAgentPackageName: 'com.service.transport_service_app',
                   ),
                 ],
@@ -151,7 +152,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                            const ProfileScreen(),
+                                                const ProfileScreen(),
                                           ),
                                         );
                                       },
@@ -166,7 +167,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                            const BusDashboard(),
+                                                const BusDashboard(),
                                           ),
                                         );
                                       },
@@ -181,7 +182,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                            const FeedbackScreen(),
+                                                const FeedbackScreen(),
                                           ),
                                         );
                                       },
@@ -196,7 +197,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                            const BusSeatingScreen(),
+                                                const BusSeatingScreen(),
                                           ),
                                         );
                                       },
@@ -211,7 +212,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                            const Advertiz(),
+                                                const Advertiz(),
                                           ),
                                         );
                                       },
@@ -235,17 +236,22 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const SettingsScreen()),
+                                                  const SettingsScreen()),
                                         );
                                       },
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),
                                     MyButton(
-                                      text: "Payment File",
+                                      text: "Upload File",
                                       iconData: Icons.attach_file,
                                       onPressed: () {
-                                        // Add your code here
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const UploadDocumentPage()),
+                                        );
                                       },
                                       textSize: 16.0,
                                       height: 50.0,

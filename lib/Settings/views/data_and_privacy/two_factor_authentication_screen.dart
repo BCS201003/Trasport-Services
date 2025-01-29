@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class TwoFactorAuthScreen extends StatefulWidget {
-  const TwoFactorAuthScreen({Key? key}) : super(key: key);
+  const TwoFactorAuthScreen({super.key});
 
   @override
   State<TwoFactorAuthScreen> createState() => _TwoFactorAuthScreenState();

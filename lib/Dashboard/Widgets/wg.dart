@@ -38,17 +38,17 @@ class DashboardWG extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 children: [
                   SizedBox(width: screenWidth * 0.04), // 4% padding between items
-                  BusContainer(),
+                  const BusContainer(),
                   SizedBox(width: screenWidth * 0.04),
-                  BusContainer(),
+                  const BusContainer(),
                   SizedBox(width: screenWidth * 0.04),
-                  BusContainer1(),
+                  const BusContainer1(),
                   SizedBox(width: screenWidth * 0.04),
-                  BusContainer2(),
+                  const BusContainer2(),
                   SizedBox(width: screenWidth * 0.04),
-                  BusContainer3(),
+                  const BusContainer3(),
                   SizedBox(width: screenWidth * 0.04),
-                  BusContainer(),
+                  const BusContainer(),
                   SizedBox(width: screenWidth * 0.04),
                 ],
               ),

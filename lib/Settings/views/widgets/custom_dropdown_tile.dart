@@ -8,12 +8,12 @@ class CustomDropdownTile extends StatelessWidget {
   final ValueChanged<String?> onChanged;
 
   const CustomDropdownTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.currentValue,
     required this.items,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

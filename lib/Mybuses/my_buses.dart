@@ -257,7 +257,7 @@ class MyBusesScreenState extends State<MyBusesScreen> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => MyBusSubmit()),
+                      builder: (context) => const MyBusSubmit()),
                   );
                 },
                 child: const Text(

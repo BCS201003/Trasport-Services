@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
@@ -32,7 +33,9 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
           _isFileUploaded = true;
         });
 
-        print('File selected: ${_selectedFile!.path}');
+        if (kDebugMode) {
+          print('File selected: ${_selectedFile!.path}');
+        }
       } else {
         setState(() {
           _isFileUploaded = false;
@@ -40,7 +43,9 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
       }
     } catch (e) {
       // Handle any errors
-      print('Error picking file: $e');
+      if (kDebugMode) {
+        print('Error picking file: $e');
+      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to pick file: $e')),
       );
@@ -57,12 +62,16 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
       // TODO: Implement form submission logic here
       // For example, send data along with the file to your backend
 
-      print('CNIC: $cnic');
-      print('Father\'s Name: $fatherName');
+      if (kDebugMode) {
+        print('CNIC: $cnic');
+      }
+      if (kDebugMode) {
+        print('Father\'s Name: $fatherName');
+      }
       // Print more fields as needed
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Form submitted successfully!')),
+        const SnackBar(content: Text('Form submitted successfully!')),
       );
 
       // Optionally, clear the form
@@ -88,12 +97,12 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
   @override
   Widget build(BuildContext context) {
     // Define color scheme
-    final Color primaryColor = Colors.black;
-    final Color accentColor = Colors.white;
-    final Color buttonColor = Colors.black;
+    const Color primaryColor = Colors.black;
+    const Color accentColor = Colors.white;
+    const Color buttonColor = Colors.black;
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'Upload Document'),
+      appBar: const CustomAppBar(title: 'Upload Document'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Card(
@@ -110,20 +119,20 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
                   // Upload File Button
                   ElevatedButton.icon(
                     onPressed: _pickFile,
-                    icon: Icon(Icons.upload_file, color: accentColor),
-                    label: Text(
+                    icon: const Icon(Icons.upload_file, color: accentColor),
+                    label: const Text(
                       'Upload Document',
                       style: TextStyle(color: accentColor, fontSize: 16),
                     ),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       backgroundColor: primaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
                   // Display selected file name
                   if (_selectedFile != null)
@@ -132,13 +141,13 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       child: ListTile(
-                        leading: Icon(Icons.insert_drive_file, color: primaryColor),
+                        leading: const Icon(Icons.insert_drive_file, color: primaryColor),
                         title: Text(
                           _selectedFile!.path.split('/').last,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: IconButton(
-                          icon: Icon(Icons.close, color: Colors.red),
+                          icon: const Icon(Icons.close, color: Colors.red),
                           onPressed: () {
                             setState(() {
                               _selectedFile = null;
@@ -151,12 +160,12 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
 
                   // Show additional input fields if file is uploaded
                   if (_isFileUploaded) ...[
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     // CNIC Field
                     TextFormField(
                       controller: _cnicController,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.credit_card),
+                        prefixIcon: const Icon(Icons.credit_card),
                         labelText: 'CNIC',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -179,7 +188,7 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
                     TextFormField(
                       controller: _fatherNameController,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(Icons.person),
                         labelText: 'Father\'s Name',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -195,13 +204,13 @@ class UploadDocumentPageState extends State<UploadDocumentPage> {
                       },
                     ),
                     // Add more TextFields as needed
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
 
                     // Submit Button
                     ElevatedButton(
                       onPressed: _submitForm,
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 14),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                         backgroundColor: buttonColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),

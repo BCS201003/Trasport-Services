@@ -1,15 +1,16 @@
 // adjust_timetable.dart
 import 'package:flutter/material.dart';
 import 'package:untitled/TimeTable/models/schedule_model.dart';
+import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class AdjustTimetablePage extends StatefulWidget {
-  const AdjustTimetablePage({Key? key}) : super(key: key);
+  const AdjustTimetablePage({super.key});
 
   @override
-  _AdjustTimetablePageState createState() => _AdjustTimetablePageState();
+  AdjustTimetablePageState createState() => AdjustTimetablePageState();
 }
 
-class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
+class AdjustTimetablePageState extends State<AdjustTimetablePage> {
   List<Schedule> schedules = [
     Schedule(
       id: '1',
@@ -57,14 +58,14 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Delete Schedule"),
-          content: Text("Are you sure you want to delete this schedule?"),
+          title: const Text("Delete Schedule"),
+          content: const Text("Are you sure you want to delete this schedule?"),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
             ),
             TextButton(
               onPressed: () {
@@ -73,10 +74,10 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
                 });
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Schedule deleted successfully.')),
+                  const SnackBar(content: Text('Schedule deleted successfully.')),
                 );
               },
-              child: Text(
+              child: const Text(
                 "Delete",
                 style: TextStyle(color: Colors.red),
               ),
@@ -95,11 +96,7 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Manage Timetable'),
-        backgroundColor: Colors.deepPurple,
-        elevation: 0,
-      ),
+      appBar: const CustomAppBar(title: 'Manage Timetable'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: schedules.isEmpty
@@ -121,14 +118,14 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.directions_bus,
                   color: Colors.deepPurple,
                   size: 40.0,
                 ),
                 title: Text(
                   '${schedule.from} ➔ ${schedule.to}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -136,25 +133,25 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 5.0),
+                    const SizedBox(height: 5.0),
                     Row(
                       children: [
-                        Icon(Icons.access_time, size: 16.0, color: Colors.grey),
-                        SizedBox(width: 5.0),
+                        const Icon(Icons.access_time, size: 16.0, color: Colors.grey),
+                        const SizedBox(width: 5.0),
                         Text(
                           schedule.time,
-                          style: TextStyle(fontSize: 16.0),
+                          style: const TextStyle(fontSize: 16.0),
                         ),
                       ],
                     ),
-                    SizedBox(height: 5.0),
+                    const SizedBox(height: 5.0),
                     Row(
                       children: [
-                        Icon(Icons.date_range, size: 16.0, color: Colors.grey),
-                        SizedBox(width: 5.0),
+                        const Icon(Icons.date_range, size: 16.0, color: Colors.grey),
+                        const SizedBox(width: 5.0),
                         Text(
                           schedule.date,
-                          style: TextStyle(fontSize: 16.0),
+                          style: const TextStyle(fontSize: 16.0),
                         ),
                       ],
                     ),
@@ -169,11 +166,11 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
                     }
                   },
                   itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                    PopupMenuItem<String>(
+                    const PopupMenuItem<String>(
                       value: 'edit',
                       child: Text('Edit'),
                     ),
-                    PopupMenuItem<String>(
+                    const PopupMenuItem<String>(
                       value: 'delete',
                       child: Text('Delete'),
                     ),
@@ -187,8 +184,8 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addOrEditSchedule(),
         backgroundColor: Colors.deepPurple,
-        child: Icon(Icons.add, color: Colors.white),
         tooltip: 'Add Schedule',
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }
@@ -197,7 +194,7 @@ class _AdjustTimetablePageState extends State<AdjustTimetablePage> {
 class ScheduleDialog extends StatefulWidget {
   final Schedule? schedule;
 
-  const ScheduleDialog({Key? key, this.schedule}) : super(key: key);
+  const ScheduleDialog({super.key, this.schedule});
 
   @override
   _ScheduleDialogState createState() => _ScheduleDialogState();
@@ -273,7 +270,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
               // From Field
               TextFormField(
                 controller: _fromController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'From',
                   prefixIcon: Icon(Icons.location_on),
                   border: OutlineInputBorder(),
@@ -285,11 +282,11 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               // To Field
               TextFormField(
                 controller: _toController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'To',
                   prefixIcon: Icon(Icons.flag),
                   border: OutlineInputBorder(),
@@ -301,16 +298,16 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               // Time Field
               TextFormField(
                 controller: _timeController,
                 decoration: InputDecoration(
                   labelText: 'Time',
-                  prefixIcon: Icon(Icons.access_time),
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.access_time),
+                  border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.timer),
+                    icon: const Icon(Icons.timer),
                     onPressed: () => _selectTime(context),
                   ),
                 ),
@@ -322,16 +319,16 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               // Date Field
               TextFormField(
                 controller: _dateController,
                 decoration: InputDecoration(
                   labelText: 'Date',
-                  prefixIcon: Icon(Icons.calendar_today),
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.calendar_today),
+                  border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.date_range),
+                    icon: const Icon(Icons.date_range),
                     onPressed: () => _selectDate(context),
                   ),
                 ),
@@ -352,7 +349,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           onPressed: () {
             Navigator.of(context).pop(); // Close dialog
           },
-          child: Text("Cancel"),
+          child: const Text("Cancel"),
         ),
         ElevatedButton(
           onPressed: () {

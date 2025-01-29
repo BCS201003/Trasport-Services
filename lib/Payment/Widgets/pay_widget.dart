@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/BusDashboard/busdashboard.dart';
 import 'package:untitled/Payment/Widgets/payment_sucessfull.dart';
 
 class PayWidget extends StatefulWidget {

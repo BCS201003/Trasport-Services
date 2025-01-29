@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class ReportIssueScreen extends StatefulWidget {
-  const ReportIssueScreen({Key? key}) : super(key: key);
+  const ReportIssueScreen({super.key});
 
   @override
   State<ReportIssueScreen> createState() => _ReportIssueScreenState();

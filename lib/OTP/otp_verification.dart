@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Bus_info/bus_info.dart';
 import 'package:untitled/OTP/otp_output.dart';
 import 'dart:async';
 

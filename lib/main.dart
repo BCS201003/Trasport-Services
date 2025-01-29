@@ -2,21 +2,11 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:untitled/File/file.dart';
 import 'package:untitled/HomeScreen/Controller/home_controller.dart';
 import 'package:untitled/Mybuses/Controller/mybus_controller.dart';
-import 'package:untitled/Mybuses/my_buses.dart';
 import 'package:untitled/Notification/notification_controller.dart';
-import 'package:untitled/Payment/Widgets/payment_sucessfull.dart';
 import 'package:untitled/ProfileScreen/Controller/profile_controller.dart';
 import 'package:untitled/Seats/controller/seatcontroller.dart';
-import 'package:untitled/Seats/view/seats.dart';
-import 'package:untitled/BusDashboard/busdashboard.dart';
-import 'package:untitled/Dashboard/dashboard.dart';
-import 'package:untitled/Feedback/Feedback.dart';
-import 'package:untitled/Advertiz/advertiz.dart';
-import 'package:untitled/NavigationSideBar/navigation_sidebar_driver.dart';
-import 'package:untitled/NavigationSideBar/navigation_sidebar_passenger.dart';
 import 'package:untitled/HomeScreen/loading_screen.dart';
 
 

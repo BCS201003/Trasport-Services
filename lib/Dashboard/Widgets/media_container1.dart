@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Payment/enroll.dart';
 import 'package:untitled/Seats/view/seats.dart';
 
 class BusContainer1 extends StatelessWidget {

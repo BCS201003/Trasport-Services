@@ -8,11 +8,11 @@ class ExpandableContainer2 extends StatefulWidget {
   final Widget expandedContent;
 
   const ExpandableContainer2({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     required this.expandedContent,
-  }) : super(key: key);
+  });
 
   @override
   State<ExpandableContainer2> createState() => _ExpandableContainer2State();

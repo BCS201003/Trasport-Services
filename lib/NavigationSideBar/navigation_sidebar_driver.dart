@@ -9,13 +9,14 @@ import 'package:untitled/BusDashboard/busdashboard.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/Seats/view/seats.dart';
 import 'package:untitled/Settings/views/settings.dart';
+import 'package:untitled/TimeTable/timetable.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
 import 'package:untitled/Widgets/Other_widget/logout.dart';
 import 'package:untitled/ProfileActivity/profile_activity.dart';
 
 class SideBarNavigationDriver extends StatefulWidget {
-  const SideBarNavigationDriver({Key? key}) : super(key: key);
+  const SideBarNavigationDriver({super.key});
 
   @override
   SideBarNavigationDriverState createState() => SideBarNavigationDriverState();
@@ -52,8 +53,7 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
 
   @override
   Widget build(BuildContext context) {
-    final NotificationController notificationController =
-        Get.put(NotificationController());
+    Get.put(NotificationController());
 
     Size mediaQuery = MediaQuery.of(context).size;
     double sidebarSize = mediaQuery.width * 0.45;
@@ -220,10 +220,16 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                       height: 50.0,
                                     ),
                                     MyButton(
-                                      text: "Notifications",
-                                      iconData: Icons.notifications,
+                                      text: "TimeTable",
+                                      iconData: Icons.time_to_leave,
                                       onPressed: () {
-                                        // Add your code here
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                            builder: (context) =>
+                                        const TimetablePage(),
+                                        ),
+                                        );
                                       },
                                       textSize: 16.0,
                                       height: 50.0,

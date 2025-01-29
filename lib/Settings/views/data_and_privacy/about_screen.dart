@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key? key}) : super(key: key);
+  const AboutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +11,10 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
-          children: const [
+          children: [
             Text(
               'Transport Service App',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

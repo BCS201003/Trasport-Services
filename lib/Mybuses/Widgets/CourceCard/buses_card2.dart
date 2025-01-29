@@ -7,7 +7,7 @@ import '../../Models/mybusmodel.dart';
 import '../../Controller/mybus_controller.dart';
 
 class BusCard2 extends StatelessWidget {
-  const BusCard2({Key? key}) : super(key: key);
+  const BusCard2({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,14 +11,14 @@ class CustomSwitchTile extends StatelessWidget {
   final Color? activeTrackColor;
 
   const CustomSwitchTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.subtitle,
     required this.value,
     required this.onChanged,
     this.activeColor,
     this.activeTrackColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,11 @@
-import 'dart:io';
 
-import 'package:untitled/BusDashboard/busdashboard.dart';
 import 'package:untitled/File/file.dart';
 import 'package:untitled/Mybuses/my_buses.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Settings/views/settings.dart';
+import 'package:untitled/TimeTable/views/screen/admin_access_driver_token.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
 import 'package:untitled/Widgets/Other_widget/logout.dart';
@@ -52,7 +51,6 @@ class SideBarNavigationAdminState extends State<SideBarNavigationAdmin>
 
   @override
   Widget build(BuildContext context) {
-    final NotificationController notificationController =
     Get.put(NotificationController());
 
     Size mediaQuery = MediaQuery.of(context).size;
@@ -171,9 +169,16 @@ class SideBarNavigationAdminState extends State<SideBarNavigationAdmin>
                                       height: 50.0,
                                     ),
                                     MyButton(
-                                      text: "Notifications",
-                                      iconData: Icons.notifications,
-                                      onPressed: () {},
+                                      text: "Adjust Table",
+                                      iconData: Icons.adjust,
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const AdminAccessDriverTokenPage()),
+                                        );
+                                      },
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),

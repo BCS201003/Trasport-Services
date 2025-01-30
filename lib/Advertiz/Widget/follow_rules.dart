@@ -42,7 +42,6 @@ class FollowRules extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   // 100% Done Indicator
                   TweenAnimationBuilder(
                     duration: const Duration(milliseconds: 700),
@@ -62,9 +61,7 @@ class FollowRules extends StatelessWidget {
                   ),
                 ],
               ),
-
               const SizedBox(height: 10),
-
               // Animated Progress Bar
               TweenAnimationBuilder<double>(
                 duration: const Duration(seconds: 1),
@@ -77,9 +74,7 @@ class FollowRules extends StatelessWidget {
                   );
                 },
               ),
-
               const SizedBox(height: 20),
-
               // Terms & Rules Widgets
               TweenAnimationBuilder(
                 duration: const Duration(milliseconds: 800),
@@ -89,9 +84,7 @@ class FollowRules extends StatelessWidget {
                 },
                 child: const TermAndConditionsWidget(),
               ),
-
               const SizedBox(height: 10),
-
               TweenAnimationBuilder(
                 duration: const Duration(milliseconds: 1000),
                 tween: Tween<double>(begin: 0, end: 1),

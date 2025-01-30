@@ -16,7 +16,7 @@ class AdvertizState extends State<Advertiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Bus Advertizing',
+        title: 'Bus Advertise',
         onBackPressed: () {
           Navigator.of(context).pop();
         },

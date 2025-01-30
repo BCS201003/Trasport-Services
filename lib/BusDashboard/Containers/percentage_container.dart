@@ -70,9 +70,9 @@ class PercentageContainer extends StatelessWidget {
                     const SizedBox(width: 16),
 
                     // Text Content
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Available',
                           style: TextStyle(

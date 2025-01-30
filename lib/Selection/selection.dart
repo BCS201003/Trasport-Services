@@ -13,8 +13,8 @@ class SelectionScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: const CustomAppBar(title: "Selection"),
       backgroundColor: Colors.white,
+      appBar: const CustomAppBar(title: "Selection"),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

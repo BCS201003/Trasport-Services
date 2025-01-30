@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/HomeScreen/views/screens/get_in_touch.dart';
-import 'package:untitled/Widgets/Appbar/custom_appbar.dart'; // Import FontAwesome
+import 'package:untitled/HomeScreen/views/widgets/get_in_touch_button.dart';
+import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
+import 'package:untitled/sign/login_screen.dart'; // Import FontAwesome
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -206,10 +207,10 @@ class HomeScreenState extends State<HomeScreen>
                 opacity: _fadeInAnimation,
                 child: SlideTransition(
                   position: _slideAnimation,
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Contact Us',
                         style: TextStyle(
                           fontSize: 24,
@@ -217,8 +218,8 @@ class HomeScreenState extends State<HomeScreen>
                           fontFamily: 'Jost',
                         ),
                       ),
-                      const SizedBox(height: 15),
-                      const Text(
+                      SizedBox(height: 15),
+                      Text(
                         'Phone: +92 312 888 9408',
                         style: TextStyle(
                           fontFamily: 'Jost',
@@ -227,8 +228,8 @@ class HomeScreenState extends State<HomeScreen>
                           color: Colors.grey,
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      const Text(
+                      SizedBox(height: 8),
+                      Text(
                         'Email: BCS201003@gmail.com',
                         style: TextStyle(
                           fontFamily: 'Jost',
@@ -237,40 +238,9 @@ class HomeScreenState extends State<HomeScreen>
                           color: Colors.grey,
                         ),
                       ),
-                      const SizedBox(height: 25),
+                      SizedBox(height: 25),
                       // Animated Elevated Button
-                      Center(
-                        child: AnimatedOpacity(
-                          opacity: _animationController.value,
-                          duration: const Duration(seconds: 2),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const GetInTouchScreen()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 60, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              elevation: 5,
-                            ),
-                            child: const Text(
-                              'Get in Touch',
-                              style: TextStyle(
-                                fontFamily: 'Jost',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      GetInTouchButton(),
                     ],
                   ),
                 ),
@@ -349,7 +319,14 @@ class HomeScreenState extends State<HomeScreen>
       floatingActionButton: ScaleTransition(
         scale: _fadeInAnimation,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) =>const LoginScreen(),
+            ),
+            );
+          },
           backgroundColor: Colors.black,
           tooltip: 'Navigate',
           child: const Icon(

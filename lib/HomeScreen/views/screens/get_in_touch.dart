@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class GetInTouchScreen extends StatelessWidget {
   const GetInTouchScreen({super.key});
@@ -8,21 +9,22 @@ class GetInTouchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, String>> universities = [
       {'name': 'University of Lahore', 'contact': '+92 42 111 865 865'},
-      {'name': 'National University of Sciences and Technology (NUST)', 'contact': '+92 51 9085 0000'},
-      {'name': 'Lahore University of Management Sciences (LUMS)', 'contact': '+92 42 3560 8000'},
+      {
+        'name': 'National University of Sciences and Technology (NUST)',
+        'contact': '+92 51 9085 0000'
+      },
+      {
+        'name': 'Lahore University of Management Sciences (LUMS)',
+        'contact': '+92 42 3560 8000'
+      },
       {'name': 'COMSATS University Islamabad', 'contact': '+92 51 9049 1000'},
       {'name': 'University of the Punjab', 'contact': '+92 42 9923 1117'},
       {'name': 'FAST National University', 'contact': '+92 42 111 128 128'},
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Get in Touch',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.black,
+      appBar: const CustomAppBar(
+        title: 'Get in Touch',
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +34,8 @@ class GetInTouchScreen extends StatelessWidget {
             return Card(
               elevation: 4,
               margin: const EdgeInsets.symmetric(vertical: 8),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
               child: ListTile(
                 leading: const Icon(Icons.school, color: Colors.blue),
                 title: Text(

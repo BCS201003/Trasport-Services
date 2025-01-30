@@ -208,7 +208,7 @@ class _ADVERTIZWidgetState extends State<ADVERTIZWidget> {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.amber.shade700, // Accent color
+                      backgroundColor: Colors.amber.shade700, // Accent color
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

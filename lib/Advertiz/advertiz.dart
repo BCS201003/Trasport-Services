@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Advertiz/Widget/follow_rules.dart';
 import 'package:untitled/Advertiz/Widget/occ.dart';
-import 'package:untitled/Advertiz/Widget/outcome.dart';
+import 'package:untitled/Advertiz/Widget/advertising.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class Advertiz extends StatefulWidget {

@@ -6,6 +6,7 @@ import 'package:untitled/Settings/views/data_and_privacy/help_and_support_screen
 import 'package:untitled/Settings/views/data_and_privacy/report_an_issue_screen.dart';
 import 'package:untitled/Settings/views/data_and_privacy/ride_history_screen.dart';
 import 'package:untitled/Settings/views/data_and_privacy/two_factor_authentication_screen.dart';
+import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 import 'widgets/custom_switch_tile.dart';
 import 'widgets/custom_dropdown_tile.dart';
 import 'widgets/section_title.dart';
@@ -24,10 +25,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-        centerTitle: true,
-      ),
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(
+        title: 'Settings'),
       body: ListView(
         children: [
           const SectionTitle(title: 'ESSENTIAL SETTINGS'),

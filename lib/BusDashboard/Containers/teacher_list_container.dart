@@ -74,7 +74,7 @@ class TeacherListContainerState extends State<TeacherListContainer> {
                 onChanged: _updateSearchQuery,
                 decoration: InputDecoration(
                   hintText: 'Search for a teacher',
-                  hintStyle: TextStyle(color: Colors.black54),
+                  hintStyle: const TextStyle(color: Colors.black54),
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),

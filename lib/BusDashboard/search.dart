@@ -26,8 +26,8 @@ class Search extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Title Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 'Teacher and Students Info',
                 style: TextStyle(

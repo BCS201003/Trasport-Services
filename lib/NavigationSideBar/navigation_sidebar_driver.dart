@@ -7,7 +7,6 @@ import 'package:untitled/File/file.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:untitled/BusDashboard/search.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
-import 'package:untitled/Seats/view/seats.dart';
 import 'package:untitled/Settings/views/settings.dart';
 import 'package:untitled/TimeTable/timetable.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';

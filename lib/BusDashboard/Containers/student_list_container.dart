@@ -73,7 +73,7 @@ class StudentListContainerState extends State<StudentListContainer> {
                 onChanged: _updateSearchQuery,
                 decoration: InputDecoration(
                   hintText: 'Search for a student',
-                  hintStyle: TextStyle(color: Colors.black54),
+                  hintStyle: const TextStyle(color: Colors.black54),
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),

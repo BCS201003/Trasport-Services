@@ -64,7 +64,7 @@ flutter:
     - assets/visa.png
     - assets/Percentage.png
     - assets/background.png
-    - assets/certificate.png
+    - assets/Certified.png
     - assets/BusSample2.png
     - assets/lottie/success.json
   fonts:

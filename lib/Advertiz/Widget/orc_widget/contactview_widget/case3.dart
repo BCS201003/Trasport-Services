@@ -97,7 +97,7 @@ class Case3Widget extends StatelessWidget {
               ),
               SizedBox(height: spacing),
               Image.asset(
-                'assets/certificate.png',
+                'assets/certified.png',
                 width: imageWidth,
                 height: imageHeight,
               ),

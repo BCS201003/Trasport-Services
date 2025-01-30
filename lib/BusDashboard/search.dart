@@ -1,11 +1,8 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:untitled/BusDashboard/Containers/forsearch_container.dart';
 import 'package:untitled/BusDashboard/Containers/student_list_container.dart';
 import 'package:untitled/BusDashboard/Containers/percentage_container.dart';
 import 'package:untitled/BusDashboard/Containers/teacher_list_container.dart';
-import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class Search extends StatelessWidget {
@@ -14,61 +11,63 @@ class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white, // Slight off-white for softness
       appBar: CustomAppBar(
         title: 'Search',
         onBackPressed: () {
           Navigator.of(context).pop();
         },
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(8.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            // Teacher Info
-            Text(
-              'Teacher and Students Info',
-              style: TextStyle(
-                fontFamily: 'Jost',
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                height: 24.48 / 24,
-                textBaseline: TextBaseline.alphabetic,
-                decorationStyle: TextDecorationStyle.solid,
-                decorationColor: Colors.black,
-                color: Colors.black,
+            // Title Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                'Teacher and Students Info',
+                style: TextStyle(
+                  fontFamily: 'Poppins', // Elegant font
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.5, // Subtle spacing
+                  color: Colors.black87,
+                ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 16),
 
-            // Centered content
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // For search
-                  ForSearch(),
-                  SizedBox(height: 20),
+            // Content Cards
+            _buildCard(child: const ForSearch()),
+            _buildCard(child: const StudentListContainer()),
+            _buildCard(child: const TeacherListContainer()),
+            _buildCard(child: const PercentageContainer()),
 
-                  // Student List
-                  StudentListContainer(),
-                  SizedBox(height: 20),
-
-                  // Teacher List
-                  TeacherListContainer(),
-                  SizedBox(height: 20),
-
-                  // Summary
-                  PercentageContainer(),
-                  SizedBox(height: 20),
-                ],
-              ),
-            ),
+            const SizedBox(height: 20),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Card Wrapper for Better UI
+  Widget _buildCard({required Widget child}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 4, // Adds a floating effect
+        shadowColor: Colors.black.withOpacity(0.1),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: child,
         ),
       ),
     );

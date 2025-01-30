@@ -10,8 +10,8 @@ class StudentListContainer extends StatefulWidget {
 class StudentListContainerState extends State<StudentListContainer> {
   final List<Map<String, dynamic>> _students = [
     {'name': 'Muhammad Saad Hussain', 'imagePath': 'assets/teacher1.png', 'progress': 0.25, 'color': Colors.red, 'percentage': '25%'},
-    {'name': 'Liaqat Hussain', 'imagePath': 'assets/teacher2.png', 'progress': 0.50, 'color': Colors.yellow, 'percentage': '50%'},
-    {'name': 'Hamza Hussain', 'imagePath': 'assets/teacher3.png', 'progress': 0.75, 'color': Colors.yellow, 'percentage': '75%'},
+    {'name': 'Liaqat Hussain', 'imagePath': 'assets/teacher2.png', 'progress': 0.50, 'color': Colors.amber, 'percentage': '50%'},
+    {'name': 'Hamza Hussain', 'imagePath': 'assets/teacher3.png', 'progress': 0.75, 'color': Colors.amber, 'percentage': '75%'},
     {'name': 'Amjad Ali', 'imagePath': 'assets/teacher4.png', 'progress': 1.0, 'color': Colors.green, 'percentage': '100%'},
   ];
 
@@ -41,32 +41,43 @@ class StudentListContainerState extends State<StudentListContainer> {
       width: screenWidth * 0.9,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.04),
-        border: Border.all(color: Colors.grey.withOpacity(0.4)),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(screenWidth * 0.04),
+        borderRadius: BorderRadius.circular(15),
         child: ExpansionTile(
           tilePadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
           title: const Text(
             'Student List',
             style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
+              fontFamily: 'Poppins',
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.4,
+              color: Colors.black87,
             ),
           ),
           iconColor: const Color(0xFF343A40),
           children: [
             Padding(
-              padding: EdgeInsets.all(screenWidth * 0.02),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: TextField(
                 onChanged: _updateSearchQuery,
                 decoration: InputDecoration(
                   hintText: 'Search for a student',
+                  hintStyle: TextStyle(color: Colors.black54),
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.03),
-                    borderSide: BorderSide(color: Colors.grey.withOpacity(0.4)),
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.withOpacity(0.3)),
                   ),
                   filled: true,
                   fillColor: Colors.grey.withOpacity(0.1),
@@ -93,36 +104,46 @@ class StudentListContainerState extends State<StudentListContainer> {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: screenHeight * 0.005,
-        horizontal: screenWidth * 0.02,
-      ),
-      padding: EdgeInsets.all(screenWidth * 0.02),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       width: screenWidth * 0.85,
-      height: screenHeight * 0.08,
+      height: screenHeight * 0.09,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        border: Border.all(color: Colors.grey.withOpacity(0.4)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Row(
         children: [
+          // Profile Image
           CircleAvatar(
             backgroundImage: AssetImage(imagePath),
-            radius: screenHeight * 0.03,
+            radius: screenHeight * 0.035,
           ),
-          SizedBox(width: screenWidth * 0.03),
+          const SizedBox(width: 12),
+
+          // Student Name
           Expanded(
             child: Text(
               name,
               style: TextStyle(
-                fontFamily: 'Jost',
-                fontSize: screenWidth * 0.03,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+                fontFamily: 'Poppins',
+                fontSize: screenWidth * 0.035,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
               ),
             ),
           ),
-          SizedBox(width: screenWidth * 0.03),
+          const SizedBox(width: 12),
+
+          // Progress Indicator & Percentage
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,24 +151,29 @@ class StudentListContainerState extends State<StudentListContainer> {
               Text(
                 percentage,
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: screenWidth * 0.03,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                  fontSize: screenWidth * 0.032,
                 ),
               ),
-              SizedBox(height: screenHeight * 0.005),
+              const SizedBox(height: 4),
               SizedBox(
                 width: screenWidth * 0.15,
-                height: screenHeight * 0.01,
-                child: LinearProgressIndicator(
-                  value: progress,
-                  backgroundColor: Colors.grey.withOpacity(0.3),
-                  valueColor: AlwaysStoppedAnimation<Color>(color),
+                height: 6,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    value: progress,
+                    backgroundColor: Colors.grey.withOpacity(0.3),
+                    valueColor: AlwaysStoppedAnimation<Color>(color),
+                  ),
                 ),
               ),
             ],
           ),
-          SizedBox(width: screenWidth * 0.03),
+          const SizedBox(width: 16),
+
+          // "Details" Button
           TextButton(
             onPressed: () {
               // Action when "Details" is pressed
@@ -155,8 +181,8 @@ class StudentListContainerState extends State<StudentListContainer> {
             child: Text(
               'Details',
               style: TextStyle(
-                fontFamily: 'Jost',
-                fontSize: screenWidth * 0.03,
+                fontFamily: 'Poppins',
+                fontSize: screenWidth * 0.032,
                 color: const Color(0xFF1F7BF4),
                 fontWeight: FontWeight.bold,
               ),

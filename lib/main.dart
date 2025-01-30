@@ -43,10 +43,10 @@ class MyApp extends StatelessWidget {
 
       // Define the global theme
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white, // Set Scaffold background to pure white
-        primaryColor: Colors.black, // Primary color
+        scaffoldBackgroundColor: Colors.white,
+        primaryColor: Colors.black,
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: Colors.amber.shade700, // Accent color (1% other color)
+          secondary: Colors.amber.shade700,
         ),
         textTheme: const TextTheme(
           bodyLarge: TextStyle(

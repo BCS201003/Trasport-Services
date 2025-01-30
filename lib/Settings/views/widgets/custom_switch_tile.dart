@@ -39,6 +39,3 @@ class CustomSwitchTile extends StatelessWidget {
     );
   }
 }
-git add .
-    git commit -m "more update"
-git push origin main

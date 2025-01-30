@@ -5,14 +5,14 @@ import 'package:untitled/sign/create_password.dart';
 import 'package:untitled/OTP/verification_phone.dart';
 import 'package:untitled/sign/forgot.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SigninScreen extends StatefulWidget {
+  const SigninScreen({super.key});
 
   @override
-  LoginScreenState createState() => LoginScreenState();
+  SigninScreenState createState() => SigninScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class SigninScreenState extends State<SigninScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPhoneValid = false;
@@ -68,7 +68,7 @@ class LoginScreenState extends State<LoginScreen> {
                   children: [
                     const SizedBox(height: 272),
                     const Text(
-                      'Login',
+                      'SignIn',
                       style: TextStyle(
                         fontFamily: 'Jost',
                         fontSize: 32,
@@ -78,7 +78,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'It is quick and easy to log in. Enter your Phone Number and Password below.',
+                      'It is quick and easy to SignIn. Enter your Phone Number and Password below.',
                       style: TextStyle(
                         fontFamily: 'Jost',
                         fontSize: 16,
@@ -96,26 +96,10 @@ class LoginScreenState extends State<LoginScreen> {
                       controller: _passwordController,
                       onChanged: _handlePasswordFieldChange,
                     ),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgetScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
+                    const SizedBox(height: 20),
+                    PasswordField(
+                      controller: _passwordController,
+                      onChanged: _handlePasswordFieldChange,
                     ),
                     const SizedBox(height: 10),
                     ElevatedButton(
@@ -140,7 +124,7 @@ class LoginScreenState extends State<LoginScreen> {
                         elevation: _isPhoneValid && _isPasswordValid ? 5 : 0,
                       ),
                       child: const Text(
-                        'Log In',
+                        'SignIn',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

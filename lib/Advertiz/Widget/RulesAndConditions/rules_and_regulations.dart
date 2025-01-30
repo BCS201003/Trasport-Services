@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RulesAndRegulationsWidget extends StatefulWidget {
-
-
-  const RulesAndRegulationsWidget({
-    super.key,
-  });
+  const RulesAndRegulationsWidget({super.key});
 
   @override
   RulesAndRegulationsWidgetState createState() => RulesAndRegulationsWidgetState();
@@ -20,16 +16,17 @@ class RulesAndRegulationsWidgetState extends State<RulesAndRegulationsWidget> {
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         border: Border.all(
-          color: !_isExpanded ? Colors.transparent : Colors.grey.withOpacity(0.5),
+          color: _isExpanded ? Colors.grey.withOpacity(0.5) : Colors.transparent,
         ),
         borderRadius: BorderRadius.circular(15),
       ),
       child: ExpansionTile(
-        leading: _isExpanded
-            ? const Icon(Icons.expand_less, color: Color(0xFF343A40))
-            : const Icon(Icons.expand_more, color: Color(0xFF343A40)),
+        leading: Icon(
+          _isExpanded ? Icons.expand_less : Icons.expand_more,
+          color: const Color(0xFF343A40),
+        ),
         title: const Text(
-          'Rules And Regulation',
+          'Rules And Regulations',
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'Jost',
@@ -41,7 +38,7 @@ class RulesAndRegulationsWidgetState extends State<RulesAndRegulationsWidget> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '4 Components  ',
+              '9 Points ',
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: 'Jost',
@@ -51,15 +48,15 @@ class RulesAndRegulationsWidgetState extends State<RulesAndRegulationsWidget> {
             ),
             SizedBox(width: 8),
             Icon(
-              Icons.check_circle_sharp,
-              color: Colors.green,
+              Icons.rule,
+              color: Colors.blueAccent,
+              size: 16,
             ),
           ],
         ),
         collapsedShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
           side: BorderSide(color: Colors.grey.withOpacity(0.5)),
-
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -67,60 +64,72 @@ class RulesAndRegulationsWidgetState extends State<RulesAndRegulationsWidget> {
         onExpansionChanged: (bool expanded) {
           setState(() => _isExpanded = expanded);
         },
-        children: const <Widget>[
+        children: const [
+          Divider(color: Colors.grey), // Divider after expansion
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Valid Registration: Only registered students and staff are allowed to use the app and its services.',
-                  style: TextStyle(fontSize: 12, color: Colors.blue),
+                _RulePoint(
+                  text: 'Valid Registration: Only registered students and staff are allowed to use the app and its services.',
+                  color: Colors.blue,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'ID Verification: Users must provide valid university ID details for account activation.',
-                  style: TextStyle(fontSize: 12, color: Colors.black),
+                _RulePoint(
+                  text: 'ID Verification: Users must provide valid university ID details for account activation.',
+                  color: Colors.black,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Accurate Information: Ensure all profile details, including contact and schedule information, are accurate and updated.',
-                  style: TextStyle(fontSize: 12, color: Colors.amber),
+                _RulePoint(
+                  text: 'Accurate Information: Ensure all profile details, including contact and schedule information, are accurate and updated.',
+                  color: Colors.amber,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Timely Check-ins: Users must check in via the app at least 10 minutes before the scheduled bus departure.',
-                  style: TextStyle(fontSize: 12, color: Colors.amberAccent),
+                _RulePoint(
+                  text: 'Timely Check-ins: Users must check in via the app at least 10 minutes before the scheduled bus departure.',
+                  color: Colors.amberAccent,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Prohibited Activities: Misuse of the app for non-academic or unauthorized purposes is strictly forbidden.',
-                  style: TextStyle(fontSize: 12, color: Colors.red),
+                _RulePoint(
+                  text: 'Prohibited Activities: Misuse of the app for non-academic or unauthorized purposes is strictly forbidden.',
+                  color: Colors.red,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Behavior on Buses: Follow university conduct rules while traveling. Misbehavior may result in suspension of app access.',
-                  style: TextStyle(fontSize: 12, color: Colors.green),
+                _RulePoint(
+                  text: 'Behavior on Buses: Follow university conduct rules while traveling. Misbehavior may result in suspension of app access.',
+                  color: Colors.green,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Bus Tracking: The tracking feature is for personal use only and must not be shared with unauthorized individuals.',
-                  style: TextStyle(fontSize: 12, color: Colors.deepPurple),
+                _RulePoint(
+                  text: 'Bus Tracking: The tracking feature is for personal use only and must not be shared with unauthorized individuals.',
+                  color: Colors.deepPurple,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Report Issues: Users are required to report technical issues or schedule discrepancies promptly through the app.',
-                  style: TextStyle(fontSize: 12, color: Colors.orange),
+                _RulePoint(
+                  text: 'Report Issues: Users are required to report technical issues or schedule discrepancies promptly through the app.',
+                  color: Colors.orange,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Data Privacy: Users must not attempt to extract or misuse personal or location data of others.',
-                  style: TextStyle(fontSize: 12, color: Colors.teal),
+                _RulePoint(
+                  text: 'Data Privacy: Users must not attempt to extract or misuse personal or location data of others.',
+                  color: Colors.teal,
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// A separate widget for rules to improve readability
+class _RulePoint extends StatelessWidget {
+  final String text;
+  final Color color;
+
+  const _RulePoint({required this.text, required this.color, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 12, color: color),
       ),
     );
   }

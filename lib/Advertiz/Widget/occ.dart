@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Advertiz/Widget/orc_widget/contactview.dart';
 import 'package:untitled/Advertiz/Widget/orc_widget/customtab.dart';
 
-class ORC extends StatefulWidget {
-  const ORC({super.key});
+class OCC extends StatefulWidget {
+  const OCC({super.key});
 
   @override
-  ORCState createState() => ORCState();
+  OCCState createState() => OCCState();
 }
 
-class ORCState extends State<ORC> {
+class OCCState extends State<OCC> {
   int _selectedIndex = 1;
 
   void _updateSelectedIndex(int index) {

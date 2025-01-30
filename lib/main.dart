@@ -2,6 +2,7 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/HomeScreen/Controller/home_controller.dart';
 import 'package:untitled/Mybuses/Controller/mybus_controller.dart';
 import 'package:untitled/NavigationSideBar/navigation_sidebar_driver.dart';
@@ -38,12 +39,13 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: MyBusesScreen(),
-       home: SideBarNavigationDriver(),
+      // home: SideBarNavigationDriver(),
       // home: FeedbackScreen(),
       // home: BusSeatingScreen(),
       // home: Dashboard(),
       // home: LoginDriverScreen(),
       // home: EnrollScreen(),
+      home: Advertiz(),
       // home: LoadingScreen(),
     );
   }

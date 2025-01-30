@@ -15,18 +15,18 @@ class ADVERTIZWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    '4 Components ',
+                    'Cust University Bus ',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Jost',
                       fontSize: 12,
-                      fontWeight: FontWeight.bold, // Correct assignment
+                      fontWeight: FontWeight.bold,
                       color: Colors.black,
-                      height: 17.0 / 12.0, // Correct height calculation
+                      height: 17.0 / 12.0,
                     ),
                   ),
                 Text(
-                  '55 Secs ',
+                  'Advertising  ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Jost',
@@ -42,9 +42,9 @@ class ADVERTIZWidget extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Jost',
                 fontSize: 12,
-                fontWeight: FontWeight.bold, // Correct assignment
+                fontWeight: FontWeight.bold,
                 color: Colors.black,
-                height: 17.0 / 12.0, // Correct height calculation
+                height: 17.0 / 12.0,
               ),
             ),
               ],

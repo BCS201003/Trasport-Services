@@ -25,8 +25,8 @@ class CustomTabBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildTabItem('Overview', 0),
-            _buildTabItem('Resources', 1),
-            _buildTabItem('Certificate', 2),
+            _buildTabItem('Comparison', 1),
+            _buildTabItem('Certified', 2),
           const SizedBox(width: 5),
           ],
         ),

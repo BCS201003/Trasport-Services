@@ -198,13 +198,13 @@ class SideBarNavigationPassengerState extends State<SideBarNavigationPassenger>
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),
-                                    MyButton(
-                                      text: "Notifications",
-                                      iconData: Icons.notifications,
-                                      onPressed: () {},
-                                      textSize: 16.0,
-                                      height: 50.0,
-                                    ),
+                                    // MyButton(
+                                    //   text: "Notifications",
+                                    //   iconData: Icons.notifications,
+                                    //   onPressed: () {},
+                                    //   textSize: 16.0,
+                                    //   height: 50.0,
+                                    // ),
                                     MyButton(
                                       text: "Settings",
                                       iconData: Icons.settings,
@@ -213,7 +213,7 @@ class SideBarNavigationPassengerState extends State<SideBarNavigationPassenger>
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const SettingsScreen()),
+                                                  const SettingsScreen()),
                                         );
                                       },
                                       textSize: 16.0,
@@ -233,22 +233,20 @@ class SideBarNavigationPassengerState extends State<SideBarNavigationPassenger>
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),
-                                MyButton(
-                                  text: "Upload File",
-                                  iconData: Icons.lock,
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                          const UploadDocumentPage()),
-                                    );
-                                  },
-                                  textSize: 16.0,
-                                  height: 50.0,
-                                ),
-
-
+                                    MyButton(
+                                      text: "Upload File",
+                                      iconData: Icons.lock,
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const UploadDocumentPage()),
+                                        );
+                                      },
+                                      textSize: 16.0,
+                                      height: 50.0,
+                                    ),
                                     MyButton(
                                       text: "Logout",
                                       iconData: Icons.lock,

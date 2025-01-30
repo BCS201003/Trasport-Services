@@ -3,16 +3,15 @@ import 'package:untitled/Widgets/Other_widget/phone_field.dart';
 import 'package:untitled/Widgets/Textfield_widget/password_field.dart';
 import 'package:untitled/sign/create_password.dart';
 import 'package:untitled/OTP/verification_phone.dart';
-import 'package:untitled/sign/forgot.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgetScreen extends StatefulWidget {
+  const ForgetScreen({super.key});
 
   @override
-  LoginScreenState createState() => LoginScreenState();
+  ForgetScreenState createState() => ForgetScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class ForgetScreenState extends State<ForgetScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPhoneValid = true;
@@ -63,7 +62,7 @@ class LoginScreenState extends State<LoginScreen> {
                   children: [
                     const SizedBox(height: 272),
                     const Text(
-                      'Login',
+                      'Forget Password',
                       style: TextStyle(
                         fontFamily: 'Jost',
                         fontSize: 28,
@@ -74,7 +73,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 5),
                     const Text(
-                      'It is quick and easy to log in. Enter your Phone Number and Password below.',
+                      'Now Enter Phone Number',
                       style: TextStyle(
                         fontFamily: 'Jost',
                         fontSize: 16,
@@ -86,46 +85,25 @@ class LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 60),
                     CustomPhoneField(
                       controller: _phoneController,
-                      onPhoneFieldChange: (value) =>
-                          _handlePhoneFieldChange(value as String),
-                    ),
-                    const SizedBox(height: 10),
-                    PasswordField(
-                      controller: _passwordController,
-                      onChanged: (value) => _handlePasswordFieldChange(value),
-                    ),
-                    const SizedBox(height: 5),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgetScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text('Forgot Password?'),
-                      ),
+                      onPhoneFieldChange: (value) => _handlePhoneFieldChange(value as String),
                     ),
                     const SizedBox(height: 5),
                     ElevatedButton(
                       onPressed: _isPhoneValid && _isPasswordValid
                           ? () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PhoneVerification(),
-                                ),
-                              );
-                            }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CreatePasswordScreen(),
+                          ),
+                        );
+                      }
                           : null,
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.infinity, 50),
-                        backgroundColor:
-                            _isPasswordValid ? Colors.black : Colors.black,
+                        backgroundColor: _isPasswordValid
+                            ? Colors.black
+                            : Colors.black,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
@@ -145,8 +123,7 @@ class LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const CreatePasswordScreen(),
+                              builder: (context) => const CreatePasswordScreen(),
                             ),
                           );
                         },

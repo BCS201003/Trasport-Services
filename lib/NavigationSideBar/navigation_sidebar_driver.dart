@@ -189,21 +189,21 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                       textSize: 16.0,
                                       height: 50.0,
                                     ),
-                                    MyButton(
-                                      text: "Seating plan",
-                                      iconData: Icons.feedback,
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const BusSeatingScreen(),
-                                          ),
-                                        );
-                                      },
-                                      textSize: 16.0,
-                                      height: 50.0,
-                                    ),
+                                    // MyButton(
+                                    //   text: "Seating plan",
+                                    //   iconData: Icons.next_plan_outlined,
+                                    //   onPressed: () {
+                                    //     Navigator.push(
+                                    //       context,
+                                    //       MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             const BusSeatingScreen(),
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    //   textSize: 16.0,
+                                    //   height: 50.0,
+                                    // ),
                                     MyButton(
                                       text: "Advertise",
                                       iconData: Icons.payment,

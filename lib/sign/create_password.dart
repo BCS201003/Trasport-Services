@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/OTP/otp_verification.dart';
 import 'package:untitled/Widgets/Textfield_widget/password_confirm_field.dart';
 import 'package:untitled/Widgets/Textfield_widget/password_field.dart';
 import 'package:untitled/sign/login_screen.dart';
@@ -6,7 +7,7 @@ import 'package:untitled/sign/login_screen.dart';
 void _navigateToSubscriberInfoScreen(BuildContext context) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => const LoginScreen()),
+    MaterialPageRoute(builder: (context) => const OtpVerification()),
   );
 }
 

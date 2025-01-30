@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SummaryContainer extends StatelessWidget {
-  const SummaryContainer({super.key});
+class PercentageContainer extends StatelessWidget {
+  const PercentageContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SummaryContainer extends StatelessWidget {
         child: ExpansionTile(
           tilePadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
           title: const Text(
-            'Summary',
+            'Percentage',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,

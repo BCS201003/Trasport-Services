@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SelectClassContainer extends StatelessWidget {
-  const SelectClassContainer({super.key});
+class ForSearch extends StatelessWidget {
+  const ForSearch({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SelectClassContainer extends StatelessWidget {
         child: const ExpansionTile(
           tilePadding: EdgeInsets.symmetric(horizontal: 16.0),
           title: Text(
-            'Select Class',
+            'Search Students and Teachers',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,

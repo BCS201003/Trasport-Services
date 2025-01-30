@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:untitled/Feedback/Feedback.dart';
 import 'package:untitled/File/file.dart';
 import 'package:untitled/Notification/notification_controller.dart';
-import 'package:untitled/BusDashboard/busdashboard.dart';
+import 'package:untitled/BusDashboard/search.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/Seats/view/seats.dart';
 import 'package:untitled/Settings/views/settings.dart';
@@ -160,14 +160,14 @@ class SideBarNavigationDriverState extends State<SideBarNavigationDriver>
                                       height: 50.0,
                                     ),
                                     MyButton(
-                                      text: "Bus DashBoard",
+                                      text: "Search",
                                       iconData: Icons.dashboard,
                                       onPressed: () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const BusDashboard(),
+                                                const Search(),
                                           ),
                                         );
                                       },

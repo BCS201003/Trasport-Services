@@ -1,22 +1,22 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:untitled/BusDashboard/Containers/select_class_container.dart';
+import 'package:untitled/BusDashboard/Containers/forsearch_container.dart';
 import 'package:untitled/BusDashboard/Containers/student_list_container.dart';
-import 'package:untitled/BusDashboard/Containers/summary_container.dart';
+import 'package:untitled/BusDashboard/Containers/percentage_container.dart';
 import 'package:untitled/BusDashboard/Containers/teacher_list_container.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
-class BusDashboard extends StatelessWidget {
-  const BusDashboard({super.key});
+class Search extends StatelessWidget {
+  const Search({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        title: 'Bus Dashboard',
+        title: 'Search',
         onBackPressed: () {
           Navigator.of(context).pop();
         },
@@ -30,7 +30,7 @@ class BusDashboard extends StatelessWidget {
 
             // Teacher Info
             Text(
-              'Bus Info',
+              'Teacher and Students Info',
               style: TextStyle(
                 fontFamily: 'Jost',
                 fontSize: 24,
@@ -50,8 +50,8 @@ class BusDashboard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Select Class
-                  SelectClassContainer(),
+                  // For search
+                  ForSearch(),
                   SizedBox(height: 20),
 
                   // Student List
@@ -63,7 +63,7 @@ class BusDashboard extends StatelessWidget {
                   SizedBox(height: 20),
 
                   // Summary
-                  SummaryContainer(),
+                  PercentageContainer(),
                   SizedBox(height: 20),
                 ],
               ),

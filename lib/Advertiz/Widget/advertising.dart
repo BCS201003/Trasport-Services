@@ -6,10 +6,10 @@ class ADVERTIZWidget extends StatefulWidget {
   const ADVERTIZWidget({super.key});
 
   @override
-  _ADVERTIZWidgetState createState() => _ADVERTIZWidgetState();
+  ADVERTIZWidgetState createState() => ADVERTIZWidgetState();
 }
 
-class _ADVERTIZWidgetState extends State<ADVERTIZWidget> {
+class ADVERTIZWidgetState extends State<ADVERTIZWidget> {
   late VideoPlayerController _controller;
   bool _isPlaying = false;
   bool _isInitialized = false;

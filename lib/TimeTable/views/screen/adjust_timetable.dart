@@ -1,6 +1,7 @@
-// adjust_timetable.dart
+// lib/TimeTable/views/adjust_timetable.dart
 import 'package:flutter/material.dart';
 import 'package:untitled/TimeTable/models/schedule_model.dart';
+import 'package:untitled/TimeTable/controllers/schedule_shared_prefs_controller.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class AdjustTimetablePage extends StatefulWidget {
@@ -11,24 +12,26 @@ class AdjustTimetablePage extends StatefulWidget {
 }
 
 class AdjustTimetablePageState extends State<AdjustTimetablePage> {
-  List<Schedule> schedules = [
-    Schedule(
-      id: '1',
-      from: 'Islamabad',
-      to: 'G14',
-      time: '08:00 AM',
-      date: '2025-02-01',
-    ),
-    Schedule(
-      id: '2',
-      from: 'G14',
-      to: 'Islamabad',
-      time: '05:00 PM',
-      date: '2025-02-01',
-    ),
-    // Add more schedules as needed
-  ];
+  // Single controller used for admin changes
+  final ScheduleSharedPrefsController _prefsController =
+  ScheduleSharedPrefsController();
 
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSchedules();
+  }
+
+  Future<void> _loadSchedules() async {
+    await _prefsController.loadSchedules(); // loads from SharedPreferences
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  // Show dialog for adding/editing
   void _addOrEditSchedule({Schedule? schedule}) async {
     final result = await showDialog<Schedule>(
       context: context,
@@ -38,18 +41,14 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
     );
 
     if (result != null) {
-      setState(() {
-        if (schedule == null) {
-          // Adding a new schedule
-          schedules.add(result);
-        } else {
-          // Editing existing schedule
-          int index = schedules.indexWhere((s) => s.id == schedule.id);
-          if (index != -1) {
-            schedules[index] = result;
-          }
-        }
-      });
+      if (schedule == null) {
+        // ADD
+        await _prefsController.addSchedule(result);
+      } else {
+        // UPDATE
+        await _prefsController.updateSchedule(result);
+      }
+      setState(() {});
     }
   }
 
@@ -62,17 +61,15 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
           content: const Text("Are you sure you want to delete this schedule?"),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => Navigator.of(context).pop(),
               child: const Text("Cancel"),
             ),
             TextButton(
-              onPressed: () {
-                setState(() {
-                  schedules.removeWhere((s) => s.id == id);
-                });
+              onPressed: () async {
+                await _prefsController.deleteSchedule(id);
                 Navigator.of(context).pop();
+                setState(() {});
+
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Schedule deleted successfully.')),
                 );
@@ -88,16 +85,15 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
     );
   }
 
-  // Function to generate unique IDs (simple implementation)
-  String _generateId() {
-    return DateTime.now().millisecondsSinceEpoch.toString();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final schedules = _prefsController.schedules;
+
     return Scaffold(
       appBar: const CustomAppBar(title: 'Manage Timetable'),
-      body: Padding(
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
         padding: const EdgeInsets.all(16.0),
         child: schedules.isEmpty
             ? Center(
@@ -136,7 +132,8 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
                     const SizedBox(height: 5.0),
                     Row(
                       children: [
-                        const Icon(Icons.access_time, size: 16.0, color: Colors.grey),
+                        const Icon(Icons.access_time,
+                            size: 16.0, color: Colors.grey),
                         const SizedBox(width: 5.0),
                         Text(
                           schedule.time,
@@ -147,7 +144,8 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
                     const SizedBox(height: 5.0),
                     Row(
                       children: [
-                        const Icon(Icons.date_range, size: 16.0, color: Colors.grey),
+                        const Icon(Icons.date_range,
+                            size: 16.0, color: Colors.grey),
                         const SizedBox(width: 5.0),
                         Text(
                           schedule.date,
@@ -165,7 +163,8 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
                       _deleteSchedule(schedule.id);
                     }
                   },
-                  itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                  itemBuilder: (BuildContext context) =>
+                  <PopupMenuEntry<String>>[
                     const PopupMenuItem<String>(
                       value: 'edit',
                       child: Text('Edit'),
@@ -191,9 +190,9 @@ class AdjustTimetablePageState extends State<AdjustTimetablePage> {
   }
 }
 
+/// DIALOG FOR ADDING/EDITING
 class ScheduleDialog extends StatefulWidget {
   final Schedule? schedule;
-
   const ScheduleDialog({super.key, this.schedule});
 
   @override
@@ -229,10 +228,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: widget.schedule != null
-          ? TimeOfDay(
-        hour: int.parse(widget.schedule!.time.split(':')[0]),
-        minute: int.parse(widget.schedule!.time.split(':')[1].split(' ')[0]),
-      )
+          ? _parseTime(widget.schedule!.time)
           : TimeOfDay.now(),
     );
     if (picked != null) {
@@ -240,6 +236,21 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
         _timeController.text = picked.format(context);
       });
     }
+  }
+
+  TimeOfDay _parseTime(String timeString) {
+    // e.g. "08:00 AM"
+    final parts = timeString.split(' ');
+    final timePart = parts[0]; // "08:00"
+    final amPmPart = parts.length > 1 ? parts[1].toLowerCase() : '';
+
+    final hourMinute = timePart.split(':');
+    int hour = int.parse(hourMinute[0]);
+    final minute = int.parse(hourMinute[1]);
+
+    if (amPmPart == 'pm' && hour < 12) hour += 12;
+    if (amPmPart == 'am' && hour == 12) hour = 0;
+    return TimeOfDay(hour: hour, minute: minute);
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -267,7 +278,6 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           key: _formKey,
           child: Column(
             children: [
-              // From Field
               TextFormField(
                 controller: _fromController,
                 decoration: const InputDecoration(
@@ -283,7 +293,6 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                 },
               ),
               const SizedBox(height: 10.0),
-              // To Field
               TextFormField(
                 controller: _toController,
                 decoration: const InputDecoration(
@@ -299,7 +308,6 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                 },
               ),
               const SizedBox(height: 10.0),
-              // Time Field
               TextFormField(
                 controller: _timeController,
                 decoration: InputDecoration(
@@ -320,7 +328,6 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                 },
               ),
               const SizedBox(height: 10.0),
-              // Date Field
               TextFormField(
                 controller: _dateController,
                 decoration: InputDecoration(
@@ -346,16 +353,15 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop(); // Close dialog
-          },
+          onPressed: () => Navigator.of(context).pop(),
           child: const Text("Cancel"),
         ),
         ElevatedButton(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               final newSchedule = Schedule(
-                id: widget.schedule?.id ?? DateTime.now().millisecondsSinceEpoch.toString(),
+                id: widget.schedule?.id ??
+                    DateTime.now().millisecondsSinceEpoch.toString(),
                 from: _fromController.text.trim(),
                 to: _toController.text.trim(),
                 time: _timeController.text.trim(),
@@ -367,7 +373,8 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.deepPurple,
           ),
-          child:  Text(widget.schedule == null ? "Add" : "Save"),        ),
+          child: Text(widget.schedule == null ? "Add" : "Save"),
+        ),
       ],
     );
   }

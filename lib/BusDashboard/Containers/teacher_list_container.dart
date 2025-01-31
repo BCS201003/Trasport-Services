@@ -93,7 +93,7 @@ class TeacherListContainerState extends State<TeacherListContainer> {
                 teacher['color'],
                 teacher['percentage'],
               );
-            }).toList(),
+            }),
           ],
         ),
       ),

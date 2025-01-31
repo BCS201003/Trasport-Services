@@ -3,7 +3,6 @@ import 'package:untitled/Widgets/Other_widget/phone_field.dart';
 import 'package:untitled/Widgets/Textfield_widget/password_field.dart';
 import 'package:untitled/sign/create_password.dart';
 import 'package:untitled/OTP/verification_phone.dart';
-import 'package:untitled/sign/forgot.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -253,4 +252,3 @@ class SigninScreenState extends State<SigninScreen> {
     );
   }
 }
-

@@ -1,7 +1,9 @@
-// admin_access_driver_token.dart
+// lib/TimeTable/views/screen/admin_access_driver_token.dart
+
 import 'package:flutter/material.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
-import 'adjust_timetable.dart';
+import 'package:untitled/TimeTable/controllers/admin_access_controller.dart';
+import 'package:untitled/TimeTable/views/screen/adjust_timetable.dart';
 
 class AdminAccessDriverTokenPage extends StatefulWidget {
   const AdminAccessDriverTokenPage({super.key});
@@ -11,17 +13,13 @@ class AdminAccessDriverTokenPage extends StatefulWidget {
       AdminAccessDriverTokenPageState();
 }
 
-class AdminAccessDriverTokenPageState
-    extends State<AdminAccessDriverTokenPage> {
+class AdminAccessDriverTokenPageState extends State<AdminAccessDriverTokenPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _tokenController = TextEditingController();
-  bool _obscureToken = true; // For toggling token visibility
+  bool _obscureToken = true;
 
-  // Replace this with your actual token validation logic
-  bool _isTokenValid(String token) {
-    // For demonstration, assume "ADMIN123" is the valid token
-    return token == "ADMIN123";
-  }
+  // Our token validation logic resides here
+  final AdminAccessController _adminAccessController = AdminAccessController();
 
   @override
   void dispose() {
@@ -31,26 +29,30 @@ class AdminAccessDriverTokenPageState
 
   void _handlePassButton() async {
     if (_formKey.currentState!.validate()) {
-      String token = _tokenController.text.trim();
+      final token = _tokenController.text.trim();
 
-      // Show a loading indicator while validating the token
+      // Show a loading indicator (optional)
       showDialog(
         context: context,
         barrierDismissible: false,
         builder: (_) => const Center(child: CircularProgressIndicator()),
       );
 
-      // Simulate token validation delay (replace with actual validation)
-      await Future.delayed(const Duration(seconds: 2));
+      // Simulate a short delay to look like "network request"
+      await Future.delayed(const Duration(seconds: 1));
 
-      Navigator.of(context).pop(); // Remove the loading indicator
+      // Pop the loading indicator
+      Navigator.of(context).pop();
 
-      if (_isTokenValid(token)) {
+      // Now validate the token
+      if (_adminAccessController.isTokenValid(token)) {
+        // If valid, navigate to AdjustTimetablePage
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const AdjustTimetablePage()),
         );
       } else {
+        // Show error
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid Token. Please try again.')),
         );
@@ -60,7 +62,6 @@ class AdminAccessDriverTokenPageState
 
   @override
   Widget build(BuildContext context) {
-    // Define color scheme
     const Color primaryColor = Colors.deepPurple;
     const Color accentColor = Colors.white;
 
@@ -70,24 +71,23 @@ class AdminAccessDriverTokenPageState
         padding: const EdgeInsets.all(24.0),
         child: Card(
           elevation: 6,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
-                  // Header Icon
                   const Icon(
                     Icons.admin_panel_settings,
                     size: 80.0,
                     color: primaryColor,
                   ),
                   const SizedBox(height: 20.0),
-                  // Title
                   const Text(
-                    'Enter Admin Token',
+                    'Enter Driver Token',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -95,21 +95,21 @@ class AdminAccessDriverTokenPageState
                     ),
                   ),
                   const SizedBox(height: 10.0),
-                  // Description
                   const Text(
-                    'Please enter your admin access token to manage the timetables.',
+                    'Please enter your driver access token to manage the timetables.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16.0, // Corrected from 'sixteen' to 16.0
+                      fontSize: 16.0,
                       color: Colors.black54,
                     ),
                   ),
                   const SizedBox(height: 30.0),
-                  // Token Input Field
+
+                  // TOKEN INPUT FIELD
                   TextFormField(
                     controller: _tokenController,
                     decoration: InputDecoration(
-                      labelText: 'Admin Token',
+                      labelText: 'Driver Token',
                       prefixIcon: const Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
@@ -133,13 +133,14 @@ class AdminAccessDriverTokenPageState
                     obscureText: _obscureToken,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Please enter the admin token';
+                        return 'Please enter the Driver token';
                       }
                       return null;
                     },
                   ),
                   const SizedBox(height: 30.0),
-                  // PASS Button
+
+                  // PASS BUTTON
                   SizedBox(
                     width: double.infinity,
                     height: 50.0,
@@ -156,7 +157,7 @@ class AdminAccessDriverTokenPageState
                         'PASS',
                         style: TextStyle(
                           color: accentColor,
-                          fontSize: 18.0, // Corrected from 'eighteen' to 18.0
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -13,13 +13,7 @@ class ForgetScreenState extends State<ForgetScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPhoneValid = true;
-  bool _isPasswordValid = true;
-
-  void _handlePasswordFieldChange(String value) {
-    setState(() {
-      _isPasswordValid = value.isNotEmpty;
-    });
-  }
+  final bool _isPasswordValid = true;
 
   void _handlePhoneFieldChange(String value) {
     setState(() {

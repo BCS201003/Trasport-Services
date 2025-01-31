@@ -1,6 +1,7 @@
-// timetable.dart
+// lib/TimeTable/views/timetable.dart
 import 'package:flutter/material.dart';
 import 'package:untitled/TimeTable/models/schedule_model.dart';
+import 'package:untitled/TimeTable/controllers/schedule_shared_prefs_controller.dart';
 import 'package:untitled/Widgets/Appbar/custom_appbar.dart';
 
 class TimetablePage extends StatefulWidget {
@@ -11,29 +12,33 @@ class TimetablePage extends StatefulWidget {
 }
 
 class TimetablePageState extends State<TimetablePage> {
-  List<Schedule> schedules = [
-    Schedule(
-      id: '1',
-      from: 'Islamabad',
-      to: 'G14',
-      time: '08:00 AM',
-      date: '2025-02-01',
-    ),
-    Schedule(
-      id: '2',
-      from: 'G14',
-      to: 'Islamabad',
-      time: '05:00 PM',
-      date: '2025-02-01',
-    ),
-    // Add more schedules as needed
-  ];
+  final ScheduleSharedPrefsController _prefsController =
+  ScheduleSharedPrefsController();
+
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSchedules();
+  }
+
+  Future<void> _loadSchedules() async {
+    await _prefsController.loadSchedules(); // load from SharedPreferences
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Schedule> schedules = _prefsController.schedules;
+
     return Scaffold(
       appBar: const CustomAppBar(title: 'My Timetable'),
-      body: Padding(
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
         padding: const EdgeInsets.all(16.0),
         child: schedules.isEmpty
             ? Center(
@@ -71,7 +76,8 @@ class TimetablePageState extends State<TimetablePage> {
                     const SizedBox(height: 5.0),
                     Row(
                       children: [
-                        const Icon(Icons.access_time, size: 16.0, color: Colors.grey),
+                        const Icon(Icons.access_time,
+                            size: 16.0, color: Colors.grey),
                         const SizedBox(width: 5.0),
                         Text(
                           schedule.time,
@@ -82,7 +88,8 @@ class TimetablePageState extends State<TimetablePage> {
                     const SizedBox(height: 5.0),
                     Row(
                       children: [
-                        const Icon(Icons.date_range, size: 16.0, color: Colors.grey),
+                        const Icon(Icons.date_range,
+                            size: 16.0, color: Colors.grey),
                         const SizedBox(width: 5.0),
                         Text(
                           schedule.date,
@@ -92,9 +99,10 @@ class TimetablePageState extends State<TimetablePage> {
                     ),
                   ],
                 ),
-                trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
+                trailing: const Icon(Icons.arrow_forward_ios,
+                    color: Colors.grey),
                 onTap: () {
-                  // Implement any action on tap, e.g., view details
+
                 },
               ),
             );

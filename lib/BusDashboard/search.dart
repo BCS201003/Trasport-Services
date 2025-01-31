@@ -31,10 +31,10 @@ class Search extends StatelessWidget {
               child: Text(
                 'Teacher and Students Info',
                 style: TextStyle(
-                  fontFamily: 'Poppins', // Elegant font
+                  fontFamily: 'Poppins',
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
-                  letterSpacing: 0.5, // Subtle spacing
+                  letterSpacing: 0.5,
                   color: Colors.black87,
                 ),
               ),

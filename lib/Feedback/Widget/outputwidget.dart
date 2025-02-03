@@ -3,6 +3,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 class OutputWidget extends StatefulWidget {
   const OutputWidget({super.key});
+
   @override
   OutputWidgetState createState() => OutputWidgetState();
 }
@@ -10,12 +11,10 @@ class OutputWidget extends StatefulWidget {
 class OutputWidgetState extends State<OutputWidget> {
   bool _showFeedback = false;
 
-  // Controller to capture the feedback text
   final TextEditingController _feedbackController = TextEditingController();
 
   @override
   void dispose() {
-    // Dispose of the controller when the widget is removed from the widget tree
     _feedbackController.dispose();
     super.dispose();
   }
@@ -23,145 +22,216 @@ class OutputWidgetState extends State<OutputWidget> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    final verticalSpaceSmall = screenHeight * 0.01; // ~1% of height
+    final verticalSpaceMed = screenHeight * 0.02; // ~2% of height
+    final verticalSpaceLarge = screenHeight * 0.03; // ~3% of height
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text(
+        Text(
           'Total Feedback',
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Jost',
-            fontSize: 20,
+            fontSize: screenWidth * 0.05, // 5% of width
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
-        const SizedBox(height: 16),
-        Center(
-          child: TweenAnimationBuilder<Color?>(
-            tween: ColorTween(
-              begin: const Color.fromARGB(215, 66, 120, 143),
-              end: const Color.fromARGB(215, 66, 120, 143),
+        SizedBox(height: verticalSpaceMed),
+        Card(
+          elevation: 4,
+          margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(screenWidth * 0.03),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(screenWidth * 0.04),
+            child: TweenAnimationBuilder<Color?>(
+              tween: ColorTween(
+                begin: const Color.fromARGB(215, 66, 120, 143),
+                end: const Color.fromARGB(215, 66, 120, 143),
+              ),
+              duration: const Duration(seconds: 2),
+              builder: (context, color, child) {
+                return CircularPercentIndicator(
+                  radius: (screenWidth < screenHeight
+                          ? screenWidth
+                          : screenHeight) *
+                      0.25,
+                  lineWidth: screenWidth * 0.05,
+                  animation: true,
+                  animationDuration: 1200,
+                  percent: 0.6,
+                  circularStrokeCap: CircularStrokeCap.round,
+                  progressColor: color,
+                  backgroundColor: Colors.grey.withOpacity(0.2),
+                  center: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "60%",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Jost',
+                          fontSize: screenWidth * 0.08,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Text(
+                        "Available",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Jost',
+                          fontSize: screenWidth * 0.035,
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-            duration: const Duration(seconds: 2),
-            builder: (context, color, child) {
-              return CircularPercentIndicator(
-                radius: screenWidth * 0.245,
-                lineWidth: screenWidth * 0.062,
-                animation: true,
-                percent: 0.6,
-                center: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "60%",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Jost',
-                        fontSize: screenWidth * 0.08,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      "Available",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Jost',
-                        fontSize: screenWidth * 0.03,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                circularStrokeCap: CircularStrokeCap.round,
-                progressColor: color,
-                backgroundColor: Colors.grey.withOpacity(0.4),
-              );
+          ),
+        ),
+        SizedBox(height: verticalSpaceMed),
+        Padding(
+          padding: EdgeInsets.only(left: screenWidth * 0.04),
+          child: Text(
+            'Feedback Is Important',
+            style: TextStyle(
+              fontFamily: 'Jost',
+              fontSize: screenWidth * 0.04,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        SizedBox(height: verticalSpaceLarge),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+          child: ElevatedButton.icon(
+            icon: Icon(
+              Icons.feedback_outlined,
+              color: Colors.white,
+              size: screenWidth * 0.05,
+            ),
+            label: Text(
+              _showFeedback ? "Close Feedback" : "Share Feedback",
+              style:
+                  TextStyle(fontFamily: 'Jost', fontSize: screenWidth * 0.04),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 66, 120, 143),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(screenWidth * 0.04),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.018,
+                horizontal: screenWidth * 0.03,
+              ),
+            ),
+            onPressed: () {
+              setState(() {
+                _showFeedback = !_showFeedback;
+              });
             },
           ),
         ),
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              'Feedback Is Important',
-              style: TextStyle(
-                fontFamily: 'Jost',
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+        if (_showFeedback)
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: verticalSpaceMed,
+              horizontal: screenWidth * 0.04,
             ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              _showFeedback = !_showFeedback;
-            });
-          },
-          child: const Text("Feedback"),
-        ),
-
-        // The feedback section is shown/hidden based on _showFeedback
-        Visibility(
-          visible: _showFeedback,
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.all(16),
-                color: Colors.blue[100],
-                child: const Text(
-                  'Your feedback is valuable. Please share your thoughts!',
-                  style: TextStyle(
-                    fontFamily: 'Jost',
-                    fontSize: 16,
-                    color: Colors.black,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(screenWidth * 0.04),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.blue[100]!, Colors.blue[50]!],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.03),
+                  ),
+                  child: Text(
+                    'Your feedback is valuable. Please share your thoughts!',
+                    style: TextStyle(
+                      fontFamily: 'Jost',
+                      fontSize: screenWidth * 0.04,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                controller: _feedbackController,
-                decoration: const InputDecoration(
-                  labelText: 'Your Feedback',
-                  border: OutlineInputBorder(),
+                SizedBox(height: verticalSpaceMed),
+                TextField(
+                  controller: _feedbackController,
+                  decoration: InputDecoration(
+                    labelText: 'Your Feedback',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Jost', fontSize: screenWidth * 0.04),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.03),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.02,
+                      horizontal: screenWidth * 0.03,
+                    ),
+                  ),
+                  maxLines: 3,
                 ),
-                maxLines: 3,
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  // You can add validation or API calls here if needed
-                  if (_feedbackController.text.trim().isEmpty) {
-                    // Example: Show a SnackBar if text is empty
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Please enter some feedback.'),
-                      ),
-                    );
-                  } else {
-                    // Close feedback section
-                    setState(() {
-                      _showFeedback = false;
-                    });
-                    // Clear the text field
-                    _feedbackController.clear();
-
-                    // Show success message (SnackBar)
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Your feedback was successfully generated.'),
-                      ),
-                    );
-                  }
-                },
-                child: const Text("Submit Feedback"),
-              ),
-            ],
+                SizedBox(height: verticalSpaceMed),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange[700],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.04),
+                    ),
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.018),
+                  ),
+                  onPressed: () {
+                    if (_feedbackController.text.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Please enter some feedback.',
+                            style: TextStyle(fontSize: screenWidth * 0.035),
+                          ),
+                        ),
+                      );
+                    } else {
+                      // Close feedback section
+                      setState(() {
+                        _showFeedback = false;
+                      });
+                      // Clear the text field
+                      _feedbackController.clear();
+                      // Show success message
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Your feedback was successfully generated.',
+                            style: TextStyle(fontSize: screenWidth * 0.035),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    "Submit Feedback",
+                    style: TextStyle(
+                        fontFamily: 'Jost', fontSize: screenWidth * 0.04),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
       ],
     );
   }

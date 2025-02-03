@@ -164,7 +164,7 @@ class OtpVerificationState extends State<OtpVerification> {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    // Handle "Change Number" tap if needed
+
                   },
                   child: Text.rich(
                     TextSpan(

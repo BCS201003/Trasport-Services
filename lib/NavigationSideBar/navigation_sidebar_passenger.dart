@@ -1,11 +1,11 @@
 import 'package:untitled/Dashboard/dashboard.dart';
 import 'package:untitled/Advertiz/advertiz.dart';
+import 'package:untitled/Feedback/Feedback.dart';
 import 'package:untitled/File/file.dart';
 import 'package:untitled/Notification/notification_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/ProfileScreen/Views/screens/create_profile/createprofilescreen.dart';
-import 'package:untitled/Seats/view/seats.dart';
 import 'package:untitled/Settings/views/settings.dart';
 import 'package:untitled/Widgets/Other_widget/my_button_neg.dart';
 import 'package:untitled/Widgets/Other_widget/drawer_neg.dart';
@@ -178,7 +178,7 @@ class SideBarNavigationPassengerState extends State<SideBarNavigationPassenger>
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const BusSeatingScreen()),
+                                                  const FeedbackScreen()),
                                         );
                                       },
                                       textSize: 16.0,

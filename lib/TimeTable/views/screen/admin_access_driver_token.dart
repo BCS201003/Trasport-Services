@@ -46,6 +46,7 @@ class AdminAccessDriverTokenPageState extends State<AdminAccessDriverTokenPage> 
 
       // Now validate the token
       if (_adminAccessController.isTokenValid(token)) {
+
         // If valid, navigate to AdjustTimetablePage
         Navigator.push(
           context,
@@ -96,7 +97,7 @@ class AdminAccessDriverTokenPageState extends State<AdminAccessDriverTokenPage> 
                   ),
                   const SizedBox(height: 10.0),
                   const Text(
-                    'Please enter your driver access token to manage the timetables.',
+                    'Please Enter your driver access token to manage the timetables.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,

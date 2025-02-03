@@ -302,7 +302,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter destination';
+                    return 'Please Enter Destination';
                   }
                   return null;
                 },
@@ -342,7 +342,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
                 readOnly: true,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please select date';
+                    return 'Please Select Date';
                   }
                   return null;
                 },

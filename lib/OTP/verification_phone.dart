@@ -70,7 +70,7 @@ class PhoneVerificationState extends State<PhoneVerification> {
                   ),
                 );
               }
-                  : null,
+              : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: _isButtonActive ? Colors.black : Colors.grey,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
